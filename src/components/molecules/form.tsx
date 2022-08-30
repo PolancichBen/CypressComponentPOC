@@ -50,6 +50,7 @@ export const Form: FC = () => {
           <Label htmlFor="name">
             Name
             <Input
+              data-cy="name"
               id="name"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setName(e.target.value)
@@ -60,12 +61,13 @@ export const Form: FC = () => {
             Age
             <Input
               id="age"
+              data-cy="age"
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setAge(e.target.value)
               }
             />
           </Label>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button data-cy="submitForm" onClick={handleSubmit}>Submit</Button>
         </Loader>
       </Wrapper>
     </Container>

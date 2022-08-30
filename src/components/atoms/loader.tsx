@@ -30,5 +30,5 @@ export const Loader: FC<LoaderProps> = ({
   selfAlign = false,
   children,
 }) => {
-  return isLoading ? <Spinner selfAlign={selfAlign} /> : <>{children}</>;
+  return isLoading ? <Spinner data-cy="loader" selfAlign={selfAlign} /> : <>{children}</>;
 };
