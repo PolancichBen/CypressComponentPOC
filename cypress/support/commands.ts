@@ -9,15 +9,21 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
-import { mount } from 'cypress/react'
-
+import React from 'react'
 declare global {
-  namespace Cypress {
-    interface Chainable {
-      mount: typeof mount
+    namespace Cypress {
+        interface Chainable {
+            mount: typeof mount
+        }
     }
-  }
 }
+
+import { mount } from 'cypress/react'
+Cypress.Commands.add('mount', (component: React.ReactNode, options) => {
+  // Wrap any parent components needed
+  // ie: return mount(<MyProvider>{component}</MyProvider>, options)
+  return mount(component, options)
+})
 //
 //
 // -- This is a parent command --

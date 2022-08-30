@@ -9,30 +9,25 @@ describe('<Form />', () => {
 
   it('Mounts form component', () => {
     cy.mount(<Form />)
-  });
-
-  it('Adds a Name', () => {
+    // Type Name and Age
     cy.get('[data-cy="name"]').type(Name);
-  });
-
-  it('Adds an Age', () => {
     cy.get('[data-cy="age"]').type(Age);
-  });
 
-  it('Validates Inputs have value', () => {
-    cy.get('[data-cy="name"]').should('be.a', 'string').and('equal', Name);
-    cy.get('[data-cy="age"]').should('be.a', 'string').and('equal', Age);
-  });
+    // Verify Name and Age
+    cy.get('[data-cy="name"]').invoke('val').should('contain', Name);
+    cy.get('[data-cy="age"]').invoke('val').should('contain', Age);
 
-  it('Successfully submits and shows loader', () => {
+    // Submit and Verify Spinner
     cy.get('[data-cy="submitForm"]').click();
     cy.get('[data-cy="loader"]').should('be.visible');
-  });
 
-  it('should show reset form state after submit', () => {
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
     cy.wait(3000); // Wait for async loader to finish
+    
+    // Verify Reset Form State
     cy.get('[data-cy="name"]').should('be.empty');
     cy.get('[data-cy="age"]').should('be.empty');
-  })
+});
+
 
 })
